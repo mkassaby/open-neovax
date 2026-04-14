@@ -1,0 +1,976 @@
+jobid=69DC14640039D6CDE3840429&wait=20 Server Output - DTU Health Tech
+
+# NetMHCpan version 4.1b
+
+# Tmpdir made /var/www/services/services/NetMHCpan-4.1/tmp/netMHCpanzgRMJR
+# Input is in FSA format
+
+# Peptide length 8,9,10,11
+
+# Make EL predictions
+
+HLA-A02:01 : Distance to training data  0.000 (using nearest neighbor HLA-A02:01)
+
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      GIIEWMFAV GIIEWMFAV  0  0  0  0  0    GIIEWMFAV          PAT_01 0.8784820    0.060 <= SB
+   1 HLA-A*02:01       GIIEWMFA GIIEWMF-A  0  0  0  7  1     GIIEWMFA          PAT_01 0.0048710    9.305
+   2 HLA-A*02:01       IIEWMFAV II-EWMFAV  0  0  0  2  1     IIEWMFAV          PAT_01 0.0145350    5.628
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_01. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      ILFGEELIM ILFGEELIM  0  0  0  0  0    ILFGEELIM          PAT_02 0.4556180    0.452 <= SB
+   1 HLA-A*02:01       ILFGEELI ILFGEEL-I  0  0  0  7  1     ILFGEELI          PAT_02 0.0449800    3.104
+   2 HLA-A*02:01       LFGEELIM -LFGEELIM  0  0  0  0  1     LFGEELIM          PAT_02 0.0018650   13.949
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_02. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      LLLDTDMLM LLLDTDMLM  0  0  0  0  0    LLLDTDMLM          PAT_03 0.6223490    0.259 <= SB
+   1 HLA-A*02:01       LLLDTDML LLLDTDM-L  0  0  0  7  1     LLLDTDML          PAT_03 0.0642560    2.514
+   2 HLA-A*02:01       LLDTDMLM LLD-TDMLM  0  0  0  3  1     LLDTDMLM          PAT_03 0.0193210    4.842
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_03. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      ALLDRYFKA ALLDRYFKA  0  0  0  0  0    ALLDRYFKA          PAT_04 0.8559970    0.072 <= SB
+   1 HLA-A*02:01       ALLDRYFK ALLDRYFK-  0  0  0  8  1     ALLDRYFK          PAT_04 0.0012850   16.220
+   2 HLA-A*02:01       LLDRYFKA LL-DRYFKA  0  0  0  2  1     LLDRYFKA          PAT_04 0.0108170    6.488
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_04. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FLGSGDNFL FLGSGDNFL  0  0  0  0  0    FLGSGDNFL          PAT_05 0.6475870    0.235 <= SB
+   1 HLA-A*02:01       FLGSGDNF FL-GSGDNF  0  0  0  2  1     FLGSGDNF          PAT_05 0.0007960   19.524
+   2 HLA-A*02:01       LGSGDNFL -LGSGDNFL  0  0  0  0  1     LGSGDNFL          PAT_05 0.0003470   26.737
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_05. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      WIYEQLPEV WIYEQLPEV  0  0  0  0  0    WIYEQLPEV          PAT_06 0.9617130    0.018 <= SB
+   1 HLA-A*02:01       WIYEQLPE WIYEQLPE-  0  0  0  8  1     WIYEQLPE          PAT_06 0.0004580   24.125
+   2 HLA-A*02:01       IYEQLPEV -IYEQLPEV  0  0  0  0  1     IYEQLPEV          PAT_06 0.0870160    2.085
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_06. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      YLARKAWPV YLARKAWPV  0  0  0  0  0    YLARKAWPV          PAT_07 0.8283810    0.088 <= SB
+   1 HLA-A*02:01       YLARKAWP YLARKAWP-  0  0  0  8  1     YLARKAWP          PAT_07 0.0004850   23.618
+   2 HLA-A*02:01       LARKAWPV -LARKAWPV  0  0  0  0  1     LARKAWPV          PAT_07 0.0025770   12.230
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_07. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      LMFAIISGL LMFAIISGL  0  0  0  0  0    LMFAIISGL          PAT_08 0.2965740    0.773 <= WB
+   1 HLA-A*02:01       LMFAIISG LMFAIISG-  0  0  0  8  1     LMFAIISG          PAT_08 0.0001400   36.917
+   2 HLA-A*02:01       MFAIISGL -MFAIISGL  0  0  0  0  1     MFAIISGL          PAT_08 0.0025230   12.346
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_08. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      VQFCLTIPL VQFCLTIPL  0  0  0  0  0    VQFCLTIPL          PAT_09 0.0443930    3.131
+   1 HLA-A*02:01       VQFCLTIP VQF-CLTIP  0  0  0  3  1     VQFCLTIP          PAT_09 0.0000200   64.375
+   2 HLA-A*02:01       QFCLTIPL -QFCLTIPL  0  0  0  0  1     QFCLTIPL          PAT_09 0.0001440   36.583
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_09. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      LLTMLDLDM LLTMLDLDM  0  0  0  0  0    LLTMLDLDM          PAT_10 0.0080590    7.454
+   1 HLA-A*02:01       LLTMLDLD LLTMLDLD-  0  0  0  8  1     LLTMLDLD          PAT_10 0.0000040   85.000
+   2 HLA-A*02:01       LTMLDLDM LTM-LDLDM  0  0  0  3  1     LTMLDLDM          PAT_10 0.0000660   47.000
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_10. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      ALAQLQQGV ALAQLQQGV  0  0  0  0  0    ALAQLQQGV          PAT_11 0.8329770    0.085 <= SB
+   1 HLA-A*02:01       ALAQLQQG ALAQLQQG-  0  0  0  8  1     ALAQLQQG          PAT_11 0.0002090   32.167
+   2 HLA-A*02:01       LAQLQQGV -LAQLQQGV  0  0  0  0  1     LAQLQQGV          PAT_11 0.0034060   10.862
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_11. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      VLQGWLLHV VLQGWLLHV  0  0  0  0  0    VLQGWLLHV          PAT_12 0.9345960    0.029 <= SB
+   1 HLA-A*02:01       VLQGWLLH VLQGWLLH-  0  0  0  8  1     VLQGWLLH          PAT_12 0.0007340   20.149
+   2 HLA-A*02:01       LQGWLLHV -LQGWLLHV  0  0  0  0  1     LQGWLLHV          PAT_12 0.0268470    4.116
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_12. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      ILIEGLEFM ILIEGLEFM  0  0  0  0  0    ILIEGLEFM          PAT_13 0.8818610    0.058 <= SB
+   1 HLA-A*02:01       ILIEGLEF ILIEGL-EF  0  0  0  6  1     ILIEGLEF          PAT_13 0.0176420    5.051
+   2 HLA-A*02:01       LIEGLEFM -LIEGLEFM  0  0  0  0  1     LIEGLEFM          PAT_13 0.0151860    5.494
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_13. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      VLLGHLQWV VLLGHLQWV  0  0  0  0  0    VLLGHLQWV          PAT_14 0.9248840    0.035 <= SB
+   1 HLA-A*02:01       VLLGHLQW VLLGH-LQW  0  0  0  5  1     VLLGHLQW          PAT_14 0.0018190   14.092
+   2 HLA-A*02:01       LLGHLQWV LL-GHLQWV  0  0  0  2  1     LLGHLQWV          PAT_14 0.0403450    3.313
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_14. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      TLPHASSSL TLPHASSSL  0  0  0  0  0    TLPHASSSL          PAT_15 0.2012820    1.135 <= WB
+   1 HLA-A*02:01       TLPHASSS TL-PHASSS  0  0  0  2  1     TLPHASSS          PAT_15 0.0000950   42.000
+   2 HLA-A*02:01       LPHASSSL -LPHASSSL  0  0  0  0  1     LPHASSSL          PAT_15 0.0002800   28.963
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_15. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      VINDILFWL VINDILFWL  0  0  0  0  0    VINDILFWL          PAT_16 0.5943960    0.286 <= SB
+   1 HLA-A*02:01       VINDILFW VINDI-LFW  0  0  0  5  1     VINDILFW          PAT_16 0.0003460   26.763
+   2 HLA-A*02:01       INDILFWL -INDILFWL  0  0  0  0  1     INDILFWL          PAT_16 0.0012470   16.410
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_16. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      TIDEESLLV TIDEESLLV  0  0  0  0  0    TIDEESLLV          PAT_17 0.5081370    0.383 <= SB
+   1 HLA-A*02:01       TIDEESLL TIDE-ESLL  0  0  0  4  1     TIDEESLL          PAT_17 0.0044810    9.643
+   2 HLA-A*02:01       IDEESLLV -IDEESLLV  0  0  0  0  1     IDEESLLV          PAT_17 0.0007570   19.903
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_17. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      HMSLLSNFL HMSLLSNFL  0  0  0  0  0    HMSLLSNFL          PAT_18 0.1268870    1.580 <= WB
+   1 HLA-A*02:01       HMSLLSNF HMS-LLSNF  0  0  0  3  1     HMSLLSNF          PAT_18 0.0006240   21.474
+   2 HLA-A*02:01       MSLLSNFL -MSLLSNFL  0  0  0  0  1     MSLLSNFL          PAT_18 0.0005230   22.938
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_18. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FMALLSNLA FMALLSNLA  0  0  0  0  0    FMALLSNLA          PAT_19 0.1242240    1.599 <= WB
+   1 HLA-A*02:01       FMALLSNL FMA-LLSNL  0  0  0  3  1     FMALLSNL          PAT_19 0.0445650    3.123
+   2 HLA-A*02:01       MALLSNLA -MALLSNLA  0  0  0  0  1     MALLSNLA          PAT_19 0.0001410   36.833
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_19. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      LMSMMGQQV LMSMMGQQV  0  0  0  0  0    LMSMMGQQV          PAT_20 0.1250320    1.593 <= WB
+   1 HLA-A*02:01       LMSMMGQQ LMSMMGQQ-  0  0  0  8  1     LMSMMGQQ          PAT_20 0.0000260   60.625
+   2 HLA-A*02:01       MSMMGQQV MSM-MGQQV  0  0  0  3  1     MSMMGQQV          PAT_20 0.0005330   22.785
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_20. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      WIQEPLEYV WIQEPLEYV  0  0  0  0  0    WIQEPLEYV          PAT_21 0.6985890    0.182 <= SB
+   1 HLA-A*02:01       WIQEPLEY WIQEP-LEY  0  0  0  5  1     WIQEPLEY          PAT_21 0.0002900   28.593
+   2 HLA-A*02:01       IQEPLEYV IQ-EPLEYV  0  0  0  2  1     IQEPLEYV          PAT_21 0.0288020    3.962
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_21. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      YLQLVKMYV YLQLVKMYV  0  0  0  0  0    YLQLVKMYV          PAT_22 0.7342110    0.157 <= SB
+   1 HLA-A*02:01       YLQLVKMY YLQ-LVKMY  0  0  0  3  1     YLQLVKMY          PAT_22 0.0007810   19.670
+   2 HLA-A*02:01       LQLVKMYV LQL-VKMYV  0  0  0  3  1     LQLVKMYV          PAT_22 0.0039930   10.140
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_22. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      SICISFSPV SICISFSPV  0  0  0  0  0    SICISFSPV          PAT_23 0.0181950    4.969
+   1 HLA-A*02:01       SICISFSP SIC-ISFSP  0  0  0  3  1     SICISFSP          PAT_23 0.0000860   43.429
+   2 HLA-A*02:01       ICISFSPV ICISFSP-V  0  0  0  7  1     ICISFSPV          PAT_23 0.0001860   33.500
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_23. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      KLMESSSVV KLMESSSVV  0  0  0  0  0    KLMESSSVV          PAT_24 0.9012600    0.048 <= SB
+   1 HLA-A*02:01       KLMESSSV KLMESS-SV  0  0  0  6  1     KLMESSSV          PAT_24 0.2124180    1.083 <= WB
+   2 HLA-A*02:01       LMESSSVV -LMESSSVV  0  0  0  0  1     LMESSSVV          PAT_24 0.0044140    9.707
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_24. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      GIFIWMAEV GIFIWMAEV  0  0  0  0  0    GIFIWMAEV          PAT_25 0.2782590    0.828 <= WB
+   1 HLA-A*02:01       GIFIWMAE GIFIWMAE-  0  0  0  8  1     GIFIWMAE          PAT_25 0.0000330   57.273
+   2 HLA-A*02:01       IFIWMAEV IFI-WMAEV  0  0  0  3  1     IFIWMAEV          PAT_25 0.0004500   24.292
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_25. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FLIDTFIFL FLIDTFIFL  0  0  0  0  0    FLIDTFIFL          PAT_26 0.9635000    0.017 <= SB
+   1 HLA-A*02:01       FLIDTFIF FLIDTFIF-  0  0  0  8  1     FLIDTFIF          PAT_26 0.0143590    5.664
+   2 HLA-A*02:01       LIDTFIFL -LIDTFIFL  0  0  0  0  1     LIDTFIFL          PAT_26 0.0701030    2.400
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_26. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FTDAGFHFA FTDAGFHFA  0  0  0  0  0    FTDAGFHFA          PAT_27 0.2775280    0.831 <= WB
+   1 HLA-A*02:01       FTDAGFHF FTDAGFH-F  0  0  0  7  1     FTDAGFHF          PAT_27 0.0033230   10.964
+   2 HLA-A*02:01       TDAGFHFA -TDAGFHFA  0  0  0  0  1     TDAGFHFA          PAT_27 0.0001640   35.000
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_27. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FTHDGFAFA FTHDGFAFA  0  0  0  0  0    FTHDGFAFA          PAT_28 0.2594330    0.890 <= WB
+   1 HLA-A*02:01       FTHDGFAF FTHDG-FAF  0  0  0  5  1     FTHDGFAF          PAT_28 0.0005200   22.985
+   2 HLA-A*02:01       THDGFAFA -THDGFAFA  0  0  0  0  1     THDGFAFA          PAT_28 0.0000860   43.429
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_28. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      ILQEHLIPL ILQEHLIPL  0  0  0  0  0    ILQEHLIPL          PAT_29 0.9317700    0.031 <= SB
+   1 HLA-A*02:01       ILQEHLIP ILQEHLIP-  0  0  0  8  1     ILQEHLIP          PAT_29 0.0021130   13.284
+   2 HLA-A*02:01       LQEHLIPL -LQEHLIPL  0  0  0  0  1     LQEHLIPL          PAT_29 0.0332330    3.686
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_29. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      ALLDFIIRL ALLDFIIRL  0  0  0  0  0    ALLDFIIRL          PAT_30 0.9939220    0.003 <= SB
+   1 HLA-A*02:01       ALLDFIIR ALLDFIIR-  0  0  0  8  1     ALLDFIIR          PAT_30 0.0161910    5.313
+   2 HLA-A*02:01       LLDFIIRL LL-DFIIRL  0  0  0  2  1     LLDFIIRL          PAT_30 0.3418570    0.650 <= WB
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_30. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      GLCPRLVLV GLCPRLVLV  0  0  0  0  0    GLCPRLVLV          PAT_31 0.7185100    0.166 <= SB
+   1 HLA-A*02:01       GLCPRLVL GLCPRLV-L  0  0  0  7  1     GLCPRLVL          PAT_31 0.0160860    5.332
+   2 HLA-A*02:01       LCPRLVLV -LCPRLVLV  0  0  0  0  1     LCPRLVLV          PAT_31 0.0040290   10.096
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_31. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      TLAPSSHSL TLAPSSHSL  0  0  0  0  0    TLAPSSHSL          PAT_32 0.9305070    0.032 <= SB
+   1 HLA-A*02:01       TLAPSSHS TLAPSSHS-  0  0  0  8  1     TLAPSSHS          PAT_32 0.0005400   22.677
+   2 HLA-A*02:01       LAPSSHSL -LAPSSHSL  0  0  0  0  1     LAPSSHSL          PAT_32 0.0247840    4.292
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_32. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FTPPQAFPA FTPPQAFPA  0  0  0  0  0    FTPPQAFPA          PAT_33 0.0532810    2.828
+   1 HLA-A*02:01       FTPPQAFP FT-PPQAFP  0  0  0  2  1     FTPPQAFP          PAT_33 0.0001450   36.500
+   2 HLA-A*02:01       TPPQAFPA -TPPQAFPA  0  0  0  0  1     TPPQAFPA          PAT_33 0.0000460   52.333
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_33. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      SLPTSPTFL SLPTSPTFL  0  0  0  0  0    SLPTSPTFL          PAT_34 0.4756860    0.424 <= SB
+   1 HLA-A*02:01       SLPTSPTF SL-PTSPTF  0  0  0  2  1     SLPTSPTF          PAT_34 0.0156590    5.409
+   2 HLA-A*02:01       LPTSPTFL -LPTSPTFL  0  0  0  0  1     LPTSPTFL          PAT_34 0.0007220   20.287
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_34. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FLNCSPSYL FLNCSPSYL  0  0  0  0  0    FLNCSPSYL          PAT_35 0.6565770    0.227 <= SB
+   1 HLA-A*02:01       FLNCSPSY FLN-CSPSY  0  0  0  3  1     FLNCSPSY          PAT_35 0.0012770   16.260
+   2 HLA-A*02:01       LNCSPSYL -LNCSPSYL  0  0  0  0  1     LNCSPSYL          PAT_35 0.0003860   25.732
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_35. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      YCFELFLMV YCFELFLMV  0  0  0  0  0    YCFELFLMV          PAT_36 0.0957790    1.944 <= WB
+   1 HLA-A*02:01       YCFELFLM YCFE-LFLM  0  0  0  4  1     YCFELFLM          PAT_36 0.0004010   25.366
+   2 HLA-A*02:01       CFELFLMV -CFELFLMV  0  0  0  0  1     CFELFLMV          PAT_36 0.0000910   42.667
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_36. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      SISSCIPFV SISSCIPFV  0  0  0  0  0    SISSCIPFV          PAT_37 0.5027520    0.390 <= SB
+   1 HLA-A*02:01       SISSCIPF SISSCIP-F  0  0  0  7  1     SISSCIPF          PAT_37 0.0002210   31.550
+   2 HLA-A*02:01       ISSCIPFV -ISSCIPFV  0  0  0  0  1     ISSCIPFV          PAT_37 0.0009670   18.056
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_37. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      YLVYQMLKV YLVYQMLKV  0  0  0  0  0    YLVYQMLKV          PAT_38 0.7874310    0.115 <= SB
+   1 HLA-A*02:01       YLVYQMLK YLV-YQMLK  0  0  0  3  1     YLVYQMLK          PAT_38 0.0004160   25.000
+   2 HLA-A*02:01       LVYQMLKV LVY-QMLKV  0  0  0  3  1     LVYQMLKV          PAT_38 0.0070510    7.910
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_38. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FLNSGGDFL FLNSGGDFL  0  0  0  0  0    FLNSGGDFL          PAT_39 0.7027260    0.177 <= SB
+   1 HLA-A*02:01       FLNSGGDF FLNSGGD-F  0  0  0  7  1     FLNSGGDF          PAT_39 0.0004980   23.382
+   2 HLA-A*02:01       LNSGGDFL -LNSGGDFL  0  0  0  0  1     LNSGGDFL          PAT_39 0.0004900   23.527
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_39. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      VMTSFSSEL VMTSFSSEL  0  0  0  0  0    VMTSFSSEL          PAT_40 0.3330570    0.672 <= WB
+   1 HLA-A*02:01       VMTSFSSE VMTSFSSE-  0  0  0  8  1     VMTSFSSE          PAT_40 0.0000650   47.250
+   2 HLA-A*02:01       MTSFSSEL MTS-FSSEL  0  0  0  3  1     MTSFSSEL          PAT_40 0.0008050   19.437
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_40. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      LLHLEVFLL LLHLEVFLL  0  0  0  0  0    LLHLEVFLL          PAT_41 0.4379140    0.475 <= SB
+   1 HLA-A*02:01       LLHLEVFL LLH-LEVFL  0  0  0  3  1     LLHLEVFL          PAT_41 0.0362810    3.497
+   2 HLA-A*02:01       LHLEVFLL -LHLEVFLL  0  0  0  0  1     LHLEVFLL          PAT_41 0.0059950    8.469
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_41. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      VQDSEFEFV VQDSEFEFV  0  0  0  0  0    VQDSEFEFV          PAT_42 0.2824360    0.815 <= WB
+   1 HLA-A*02:01       VQDSEFEF VQD-SEFEF  0  0  0  3  1     VQDSEFEF          PAT_42 0.0016120   14.801
+   2 HLA-A*02:01       QDSEFEFV -QDSEFEFV  0  0  0  0  1     QDSEFEFV          PAT_42 0.0002600   29.760
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_42. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      TILELSDEV TILELSDEV  0  0  0  0  0    TILELSDEV          PAT_43 0.4293680    0.487 <= SB
+   1 HLA-A*02:01       TILELSDE TILELSDE-  0  0  0  8  1     TILELSDE          PAT_43 0.0000270   60.000
+   2 HLA-A*02:01       ILELSDEV IL-ELSDEV  0  0  0  2  1     ILELSDEV          PAT_43 0.0402840    3.316
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_43. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      KLVNFSEEL KLVNFSEEL  0  0  0  0  0    KLVNFSEEL          PAT_44 0.8261210    0.089 <= SB
+   1 HLA-A*02:01       KLVNFSEE KLVNFSEE-  0  0  0  8  1     KLVNFSEE          PAT_44 0.0002430   30.500
+   2 HLA-A*02:01       LVNFSEEL -LVNFSEEL  0  0  0  0  1     LVNFSEEL          PAT_44 0.0037710   10.413
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_44. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FTLSKPHGV FTLSKPHGV  0  0  0  0  0    FTLSKPHGV          PAT_45 0.7869100    0.116 <= SB
+   1 HLA-A*02:01       FTLSKPHG FTLSKPHG-  0  0  0  8  1     FTLSKPHG          PAT_45 0.0000970   41.714
+   2 HLA-A*02:01       TLSKPHGV TL-SKPHGV  0  0  0  2  1     TLSKPHGV          PAT_45 0.0673900    2.451
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_45. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FLIITDFFL FLIITDFFL  0  0  0  0  0    FLIITDFFL          PAT_46 0.6077100    0.273 <= SB
+   1 HLA-A*02:01       FLIITDFF FLI-ITDFF  0  0  0  3  1     FLIITDFF          PAT_46 0.0017130   14.455
+   2 HLA-A*02:01       LIITDFFL -LIITDFFL  0  0  0  0  1     LIITDFFL          PAT_46 0.0042750    9.840
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_46. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FAFTVKFYL FAFTVKFYL  0  0  0  0  0    FAFTVKFYL          PAT_47 0.2294600    1.006 <= WB
+   1 HLA-A*02:01       FAFTVKFY FAF-TVKFY  0  0  0  3  1     FAFTVKFY          PAT_47 0.0001100   40.000
+   2 HLA-A*02:01       AFTVKFYL A-FTVKFYL  0  0  0  1  1     AFTVKFYL          PAT_47 0.0002430   30.500
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_47. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      ILYCDMCNL ILYCDMCNL  0  0  0  0  0    ILYCDMCNL          PAT_48 0.1694080    1.294 <= WB
+   1 HLA-A*02:01       ILYCDMCN ILYCDMCN-  0  0  0  8  1     ILYCDMCN          PAT_48 0.0000180   65.833
+   2 HLA-A*02:01       LYCDMCNL -LYCDMCNL  0  0  0  0  1     LYCDMCNL          PAT_48 0.0003150   27.710
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_48. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      YLDWSVLLC YLDWSVLLC  0  0  0  0  0    YLDWSVLLC          PAT_49 0.3072050    0.742 <= WB
+   1 HLA-A*02:01       YLDWSVLL YL-DWSVLL  0  0  0  2  1     YLDWSVLL          PAT_49 0.4820060    0.416 <= SB
+   2 HLA-A*02:01       LDWSVLLC -LDWSVLLC  0  0  0  0  1     LDWSVLLC          PAT_49 0.0001210   38.800
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_49. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FTKLPHGSV FTKLPHGSV  0  0  0  0  0    FTKLPHGSV          PAT_50 0.0048350    9.334
+   1 HLA-A*02:01       FTKLPHGS FT-KLPHGS  0  0  0  2  1     FTKLPHGS          PAT_50 0.0000370   55.455
+   2 HLA-A*02:01       TKLPHGSV -TKLPHGSV  0  0  0  0  1     TKLPHGSV          PAT_50 0.0000230   62.500
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_50. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FISVIITLV FISVIITLV  0  0  0  0  0    FISVIITLV          PAT_51 0.6471410    0.235 <= SB
+   1 HLA-A*02:01       FISVIITL FIS-VIITL  0  0  0  3  1     FISVIITL          PAT_51 0.1362260    1.512 <= WB
+   2 HLA-A*02:01       ISVIITLV ISV-IITLV  0  0  0  3  1     ISVIITLV          PAT_51 0.0013050   16.120
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_51. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      YLPEELVAL YLPEELVAL  0  0  0  0  0    YLPEELVAL          PAT_52 0.9725730    0.012 <= SB
+   1 HLA-A*02:01       YLPEELVA YLPEELV-A  0  0  0  7  1     YLPEELVA          PAT_52 0.0654760    2.486
+   2 HLA-A*02:01       LPEELVAL -LPEELVAL  0  0  0  0  1     LPEELVAL          PAT_52 0.0186410    4.919
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_52. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FILSITVIV FILSITVIV  0  0  0  0  0    FILSITVIV          PAT_53 0.5243040    0.365 <= SB
+   1 HLA-A*02:01       FILSITVI FILSITV-I  0  0  0  7  1     FILSITVI          PAT_53 0.0071750    7.853
+   2 HLA-A*02:01       ILSITVIV ILS-ITVIV  0  0  0  3  1     ILSITVIV          PAT_53 0.0467100    3.026
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_53. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      VQCLTPIFL VQCLTPIFL  0  0  0  0  0    VQCLTPIFL          PAT_54 0.0369840    3.465
+   1 HLA-A*02:01       VQCLTPIF VQC-LTPIF  0  0  0  3  1     VQCLTPIF          PAT_54 0.0001340   37.500
+   2 HLA-A*02:01       QCLTPIFL QCL-TPIFL  0  0  0  3  1     QCLTPIFL          PAT_54 0.0005170   23.036
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_54. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      VIFNWDLIL VIFNWDLIL  0  0  0  0  0    VIFNWDLIL          PAT_55 0.1914060    1.182 <= WB
+   1 HLA-A*02:01       VIFNWDLI VIFNWDL-I  0  0  0  7  1     VIFNWDLI          PAT_55 0.0026910   11.989
+   2 HLA-A*02:01       IFNWDLIL -IFNWDLIL  0  0  0  0  1     IFNWDLIL          PAT_55 0.0008660   18.871
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_55. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      ALLENMERL ALLENMERL  0  0  0  0  0    ALLENMERL          PAT_56 0.9399580    0.027 <= SB
+   1 HLA-A*02:01       ALLENMER ALLE-NMER  0  0  0  4  1     ALLENMER          PAT_56 0.0014640   15.400
+   2 HLA-A*02:01       LLENMERL LL-ENMERL  0  0  0  2  1     LLENMERL          PAT_56 0.0380220    3.418
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_56. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FLLLLLLLV FLLLLLLLV  0  0  0  0  0    FLLLLLLLV          PAT_57 0.2692440    0.858 <= WB
+   1 HLA-A*02:01       FLLLLLLL FLL-LLLLL  0  0  0  3  1     FLLLLLLL          PAT_57 0.0473550    2.998
+   2 HLA-A*02:01       LLLLLLLV LLL-LLLLV  0  0  0  3  1     LLLLLLLV          PAT_57 0.0137420    5.792
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_57. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FAFKVYFTL FAFKVYFTL  0  0  0  0  0    FAFKVYFTL          PAT_58 0.1356280    1.517 <= WB
+   1 HLA-A*02:01       FAFKVYFT FAF-KVYFT  0  0  0  3  1     FAFKVYFT          PAT_58 0.0013900   15.729
+   2 HLA-A*02:01       AFKVYFTL A-FKVYFTL  0  0  0  1  1     AFKVYFTL          PAT_58 0.0002790   29.000
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_58. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      ILNDCYCML ILNDCYCML  0  0  0  0  0    ILNDCYCML          PAT_59 0.2345320    0.985 <= WB
+   1 HLA-A*02:01       ILNDCYCM ILNDC-YCM  0  0  0  5  1     ILNDCYCM          PAT_59 0.0012640   16.325
+   2 HLA-A*02:01       LNDCYCML -LNDCYCML  0  0  0  0  1     LNDCYCML          PAT_59 0.0001630   35.077
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_59. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      GSIIFFWNV GSIIFFWNV  0  0  0  0  0    GSIIFFWNV          PAT_60 0.0229830    4.446
+   1 HLA-A*02:01       GSIIFFWN GSIIFFWN-  0  0  0  8  1     GSIIFFWN          PAT_60 0.0000020   90.000
+   2 HLA-A*02:01       SIIFFWNV SII-FFWNV  0  0  0  3  1     SIIFFWNV          PAT_60 0.0255730    4.224
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_60. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      VLDKIIGEI VLDKIIGEI  0  0  0  0  0    VLDKIIGEI          PAT_61 0.4419640    0.470 <= SB
+   1 HLA-A*02:01       VLDKIIGE VL-DKIIGE  0  0  0  2  1     VLDKIIGE          PAT_61 0.0009600   18.113
+   2 HLA-A*02:01       LDKIIGEI -LDKIIGEI  0  0  0  0  1     LDKIIGEI          PAT_61 0.0007540   19.932
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_61. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FLLLLLLLV FLLLLLLLV  0  0  0  0  0    FLLLLLLLV          PAT_62 0.2692440    0.858 <= WB
+   1 HLA-A*02:01       FLLLLLLL FLL-LLLLL  0  0  0  3  1     FLLLLLLL          PAT_62 0.0473550    2.998
+   2 HLA-A*02:01       LLLLLLLV LLL-LLLLV  0  0  0  3  1     LLLLLLLV          PAT_62 0.0137420    5.792
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_62. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      GMPGVAAAL GMPGVAAAL  0  0  0  0  0    GMPGVAAAL          PAT_63 0.2329990    0.991 <= WB
+   1 HLA-A*02:01       GMPGVAAA GM-PGVAAA  0  0  0  2  1     GMPGVAAA          PAT_63 0.0079580    7.495
+   2 HLA-A*02:01       MPGVAAAL -MPGVAAAL  0  0  0  0  1     MPGVAAAL          PAT_63 0.0004060   25.244
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_63. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      ILPILQEHL ILPILQEHL  0  0  0  0  0    ILPILQEHL          PAT_64 0.3053900    0.748 <= WB
+   1 HLA-A*02:01       ILPILQEH IL-PILQEH  0  0  0  2  1     ILPILQEH          PAT_64 0.0011450   16.920
+   2 HLA-A*02:01       LPILQEHL -LPILQEHL  0  0  0  0  1     LPILQEHL          PAT_64 0.0005490   22.538
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_64. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      FTFAQPPPA FTFAQPPPA  0  0  0  0  0    FTFAQPPPA          PAT_65 0.3124510    0.728 <= WB
+   1 HLA-A*02:01       FTFAQPPP FTFAQPPP-  0  0  0  8  1     FTFAQPPP          PAT_65 0.0001330   37.600
+   2 HLA-A*02:01       TFAQPPPA -TFAQPPPA  0  0  0  0  1     TFAQPPPA          PAT_65 0.0001490   36.167
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_65. Allele HLA-A*02:01. Number of high binders 0. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      SLFDLEKML SLFDLEKML  0  0  0  0  0    SLFDLEKML          PAT_66 0.8595130    0.070 <= SB
+   1 HLA-A*02:01       SLFDLEKM SLFD-LEKM  0  0  0  4  1     SLFDLEKM          PAT_66 0.1046320    1.818 <= WB
+   2 HLA-A*02:01       LFDLEKML -LFDLEKML  0  0  0  0  1     LFDLEKML          PAT_66 0.0140850    5.721
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_66. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 1. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      KLFSENVEL KLFSENVEL  0  0  0  0  0    KLFSENVEL          PAT_67 0.9706710    0.013 <= SB
+   1 HLA-A*02:01       KLFSENVE KLFSENVE-  0  0  0  8  1     KLFSENVE          PAT_67 0.0028470   11.733
+   2 HLA-A*02:01       LFSENVEL -LFSENVEL  0  0  0  0  1     LFSENVEL          PAT_67 0.0661230    2.474
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_67. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      VLQKLLMGV VLQKLLMGV  0  0  0  0  0    VLQKLLMGV          PAT_68 0.7610500    0.136 <= SB
+   1 HLA-A*02:01       VLQKLLMG VLQKLLMG-  0  0  0  8  1     VLQKLLMG          PAT_68 0.0002130   31.950
+   2 HLA-A*02:01       LQKLLMGV -LQKLLMGV  0  0  0  0  1     LQKLLMGV          PAT_68 0.0036250   10.593
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_68. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3
+
+Link to Allele Frequencies in Worldwide Populations HLA-A02:01
+-----------------------------------------------------------------------------------
+# Rank Threshold for Strong binding peptides   0.500
+# Rank Threshold for Weak binding peptides   2.000
+---------------------------------------------------------------------------------------------------------------------------
+ Pos         MHC        Peptide      Core Of Gp Gl Ip Il        Icore        Identity  Score_EL %Rank_EL BindLevel
+---------------------------------------------------------------------------------------------------------------------------
+   1 HLA-A*02:01      SLMELDKFL SLMELDKFL  0  0  0  0  0    SLMELDKFL          PAT_69 0.8801380    0.059 <= SB
+   1 HLA-A*02:01       SLMELDKF SLMELD-KF  0  0  0  6  1     SLMELDKF          PAT_69 0.0066990    8.085
+   2 HLA-A*02:01       LMELDKFL -LMELDKFL  0  0  0  0  1     LMELDKFL          PAT_69 0.0114130    6.336
+---------------------------------------------------------------------------------------------------------------------------
+
+Protein PAT_69. Allele HLA-A*02:01. Number of high binders 1. Number of weak binders 0. Number of peptides 3

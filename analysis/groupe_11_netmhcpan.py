@@ -2,26 +2,26 @@
 Open-NeoVax — NetMHCpan 4.1 benchmark (Group 11, issue #49)
 ===========================================================
 
-Compare our pipeline ranking against NetMHCpan 4.1 %Rank predictions for:
+Compare our pipeline ranking against real NetMHCpan 4.1 %Rank_EL predictions:
 
     1. patient_zero   — 18 mutant peptides, HLA-A*02:01
     2. patient_real   — 69 REAL peptides with measured IC50 (bonus)
 
-The NetMHCpan values below are **mock** values following the distributional
-shape of real NetMHCpan-4.1 output (strong binders around 0.1, weak binders
-around 1–3, non-binders > 10). They include 2-3 deliberate disagreements
-with our own pipeline so the analysis has something to say.
-
-Usage
------
-    python analysis/groupe_11_netmhcpan.py
+How to reproduce
+----------------
+    1. Run ``python analysis/groupe_11_netmhcpan.py`` once — it prints the
+       peptide list formatted for submission.
+    2. Go to https://services.healthtech.dtu.dk/services/NetMHCpan-4.1/,
+       paste the peptides, select HLA-A*02:01, and download the raw output.
+    3. Save it as ``analysis/netmhcpan_patient_zero.txt`` (and optionally
+       ``analysis/netmhcpan_patient_real.txt`` for the REAL peptides).
+    4. Re-run the script — the parser will pick up the real data.
 """
 
 from __future__ import annotations
 
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 from scipy import stats
 
@@ -33,39 +33,21 @@ PATIENT_ZERO_RAW = DATA_DIR / "patient_zero.csv"
 PATIENT_REAL_RAW = DATA_DIR / "patient_real.csv"
 SCORES_ZERO_CSV = ANALYSIS_DIR / "scores_patient_zero.csv"
 SCORES_REAL_CSV = ANALYSIS_DIR / "scores_patient_real.csv"
+NETMHCPAN_ZERO_TXT = ANALYSIS_DIR / "netmhcpan_patient_zero.txt"
+NETMHCPAN_REAL_TXT = ANALYSIS_DIR / "netmhcpan_patient_real.txt"
+
+VALID_AA = set("ACDEFGHIKLMNPQRSTVWY")
 
 
 # ══════════════════════════════════════════════════════════════════════
-#  MOCK NetMHCpan 4.1 RESULTS (HLA-A*02:01)
+#  Biology-level context — used to annotate disagreements when they arise
 # ══════════════════════════════════════════════════════════════════════
-# %Rank_EL: strong binder ≤ 0.5, weak binder ≤ 2.0, non-binder > 2.0
-# Values are realistic and include 3 deliberate disagreements noted below.
-NETMHCPAN_ZERO: dict[str, float] = {
-    "CAND_01": 0.15,  # GOLD — strong binder (agrees)
-    "CAND_02": 0.20,  # GOLD — strong binder (agrees)
-    "CAND_03": 0.45,  # GOOD — strong binder
-    "CAND_04": 0.35,  # GOOD — strong binder
-    "CAND_05": 0.90,  # GOOD — weak binder
-    "CAND_06": 0.08,  # TRAP (WT==MUT) — NetMHCpan blind to "trap" (DISAGR #1)
-    "CAND_07": 1.20,  # MEDIOCRE
-    "CAND_08": 3.50,  # MEDIOCRE — not a binder
-    "CAND_09": 2.10,  # MEDIOCRE — borderline
-    "CAND_10": 0.30,  # GOOD — strong binder
-    "CAND_11": 6.00,  # BAD A1 — non-binder
-    "CAND_12": 25.00,  # BAD A2/C1/C2 — far from binding
-    "CAND_13": 0.55,  # NEUTRAL — NetMHCpan thinks it's a decent binder
-    "CAND_14": 0.60,  # BAD D1 — strong HLA binder but self-match → DISAGREEMENT #2
-    "CAND_15": 12.50,  # BAD C2 — non-binder
-    "CAND_16": 15.00,  # BAD B4 (X/*) — NetMHCpan rejects non-standard AAs
-    "CAND_17": 4.20,  # MEDIOCRE
-    "CAND_18": 0.25,  # TRAP D3 (mut outside window) → DISAGREEMENT #3
-}
 
 DISAGREEMENTS_EXPLAINED: dict[str, str] = {
     "CAND_06": (
         "WT == MUT (no actual mutation). NetMHCpan only scores HLA binding "
-        "and sees a perfectly good 9-mer, but module D3 correctly flags it as "
-        "a TRAP because there is nothing neoantigenic about it."
+        "and sees a perfectly good 9-mer, but module D3 correctly flags it "
+        "as a TRAP because there is nothing neoantigenic about it."
     ),
     "CAND_14": (
         "Strong HLA binder (P2=L, P9=V). NetMHCpan rewards the anchors and "
@@ -81,10 +63,10 @@ DISAGREEMENTS_EXPLAINED: dict[str, str] = {
     ),
     "CAND_11": (
         "ILVMILMVL is extreme-hydrophobicity (only I/L/V/M). NetMHCpan "
-        "correctly down-weights it (P9=L is fine but the middle is "
-        "pathological), while our pipeline's mean aggregation rewards its "
-        "good TCR-contact / anchor scores and masks the A1 hydrophobicity "
-        "penalty — a known limitation of equal-weight averaging."
+        "correctly down-weights it (middle is pathological), while our "
+        "pipeline's mean aggregation rewards its good TCR-contact / anchor "
+        "scores and masks the A1 hydrophobicity penalty — a known limitation "
+        "of equal-weight averaging."
     ),
     "CAND_05": (
         "GLAFQYPEL is a real GOOD candidate. Our pipeline ranks it top-3 "
@@ -95,22 +77,53 @@ DISAGREEMENTS_EXPLAINED: dict[str, str] = {
 
 
 # ══════════════════════════════════════════════════════════════════════
-#  MOCK NetMHCpan 4.1 RESULTS — patient_real (bonus)
+#  PARSER — NetMHCpan 4.1 raw text output
 # ══════════════════════════════════════════════════════════════════════
-# For the bonus section we correlate NetMHCpan %Rank with IC50 on the 69
-# REAL peptides. Real NetMHCpan %Rank and IC50 are tightly coupled because
-# NetMHCpan's output is essentially a binding-affinity prediction, so we
-# synthesise values that mirror that by deriving %Rank from IC50 with
-# small noise — exactly what a healthy NetMHCpan run would produce.
 
 
-def _mock_netmhcpan_from_ic50(ic50_nm: float, rng: np.random.Generator) -> float:
-    """Derive a plausible NetMHCpan %Rank from an IC50 value."""
-    # NetMHCpan %Rank ≈ log-scaled IC50; strong binders (IC50 < 50 nM) land
-    # below %Rank 0.5, non-binders (IC50 > 5000 nM) beyond %Rank 5.
-    base = 0.05 * (ic50_nm**0.55)
-    noise = rng.normal(loc=1.0, scale=0.15)
-    return float(max(0.01, base * noise))
+def parse_netmhcpan_output(filepath: Path) -> dict[str, float]:
+    """Parse a NetMHCpan 4.1 raw text output file.
+
+    Returns a dict mapping peptide sequence -> %Rank_EL for full-length
+    peptides (Of == 0). Comment lines (starting with '#') and header /
+    separator lines are skipped. Robust to the presence or absence of the
+    trailing BindLevel column.
+
+    The expected column layout is:
+        Pos  MHC  Peptide  Core  Of  Gp  Gl  Ip  Il  Icore  Identity
+        Score_EL  %Rank_EL  [BindLevel]
+    """
+    path = Path(filepath)
+    if not path.exists():
+        return {}
+
+    out: dict[str, float] = {}
+    with open(path, encoding="utf-8", errors="ignore") as fh:
+        for line in fh:
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#") or stripped.startswith("-"):
+                continue
+            parts = stripped.split()
+            if not parts or not parts[0].isdigit():
+                continue
+            if len(parts) < 13:
+                continue
+            # Keep only full-length peptides (Of == 0 → no offset insertion)
+            if parts[4] != "0":
+                continue
+            peptide = parts[2]
+            if not (8 <= len(peptide) <= 11):
+                continue
+            if not all(c in VALID_AA for c in peptide):
+                continue
+            try:
+                rank_el = float(parts[12])
+            except ValueError:
+                continue
+            # Keep the best (lowest) rank if a peptide appears more than once
+            if peptide not in out or rank_el < out[peptide]:
+                out[peptide] = rank_el
+    return out
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -157,15 +170,46 @@ def analyse_patient_zero() -> None:
     df_peps = _load_patient_peptides(PATIENT_ZERO_RAW)
     _print_peptides_for_netmhcpan(df_peps)
 
-    df_net = pd.DataFrame(
-        {
-            "candidate_id": list(NETMHCPAN_ZERO.keys()),
-            "netmhcpan_rank_pct": list(NETMHCPAN_ZERO.values()),
-        }
-    )
+    pep_to_rank = parse_netmhcpan_output(NETMHCPAN_ZERO_TXT)
+    if not pep_to_rank:
+        print()
+        print(
+            f"  [SKIP] {NETMHCPAN_ZERO_TXT.name} not found or empty. "
+            "Submit the peptides"
+        )
+        print(
+            "  listed above on https://services.healthtech.dtu.dk/services/"
+            "NetMHCpan-4.1/ and"
+        )
+        rel = NETMHCPAN_ZERO_TXT.relative_to(PROJECT_ROOT)
+        print(f"  save the raw output as {rel}.")
+        return
+
+    # Attach NetMHCpan %Rank_EL by peptide sequence
+    df_peps = df_peps.copy()
+    df_peps["netmhcpan_rank_pct"] = df_peps["peptide_mut"].map(pep_to_rank)
+
+    missing = df_peps[df_peps["netmhcpan_rank_pct"].isna()][
+        ["candidate_id", "peptide_mut"]
+    ]
+    if not missing.empty:
+        print()
+        print(
+            f"  [WARN] {len(missing)} peptide(s) absent from NetMHCpan output "
+            "(non-standard AA or skipped):"
+        )
+        for _, r in missing.iterrows():
+            print(f"    {r['candidate_id']}: {r['peptide_mut']}")
+
+    df_net = df_peps.dropna(subset=["netmhcpan_rank_pct"])[
+        ["candidate_id", "netmhcpan_rank_pct"]
+    ]
     df_pipe = _pipeline_mean_score(SCORES_ZERO_CSV)
 
     df = df_pipe.merge(df_net, on="candidate_id", how="inner")
+    if len(df) < 3:
+        print(f"  [SKIP] Only {len(df)} candidates overlap — not enough to correlate.")
+        return
 
     # Ranks: high pipeline_score = better, low netmhcpan %Rank = better.
     df["our_rank"] = (
@@ -182,17 +226,21 @@ def analyse_patient_zero() -> None:
     )
 
     print()
+    print(f"  Parsed {len(pep_to_rank)} peptides from {NETMHCPAN_ZERO_TXT.name}.")
     print("  Comparison table (sorted by |delta|):")
-    print(f"  {'candidate':<10s}  {'our':>4s}  {'netmhcp':>7s}  {'Δ':>4s}  label")
-    print(f"  {'-' * 10}  {'-' * 4}  {'-' * 7}  {'-' * 4}  ---------")
+    print(
+        f"  {'candidate':<10s}  {'our':>4s}  {'netmhcp':>7s}  "
+        f"{'%Rank_EL':>9s}  {'Δ':>4s}  label"
+    )
+    print(f"  {'-' * 10}  {'-' * 4}  {'-' * 7}  {'-' * 9}  {'-' * 4}  ---------")
     ordered = df.reindex(df["delta"].abs().sort_values(ascending=False).index)
     for _, r in ordered.iterrows():
         print(
             f"  {r['candidate_id']:<10s}  {r['our_rank']:>4d}  "
-            f"{r['netmhcpan_rank']:>7d}  {r['delta']:>+4d}  {r['label']}"
+            f"{r['netmhcpan_rank']:>7d}  {r['netmhcpan_rank_pct']:>9.3f}  "
+            f"{r['delta']:>+4d}  {r['label']}"
         )
 
-    # Agreement count (same top-half / bottom-half split is a soft agreement)
     n = len(df)
     median = n / 2.0
     agree = int(
@@ -270,15 +318,20 @@ def analyse_patient_real() -> None:
         print("  patient_real files not found — skipping.")
         return
 
+    pep_to_rank = parse_netmhcpan_output(NETMHCPAN_REAL_TXT)
+    if not pep_to_rank:
+        print(
+            f"  [SKIP] {NETMHCPAN_REAL_TXT.name} not found — "
+            "bonus analysis needs real NetMHCpan output."
+        )
+        return
+
     df_raw = pd.read_csv(PATIENT_REAL_RAW)
     df_real = df_raw[(df_raw["label"] == "REAL") & df_raw["ic50_nm"].notna()][
         ["candidate_id", "peptide_mut", "ic50_nm"]
     ].copy()
-
-    rng = np.random.default_rng(42)
-    df_real["netmhcpan_rank_pct"] = df_real["ic50_nm"].apply(
-        lambda x: _mock_netmhcpan_from_ic50(float(x), rng)
-    )
+    df_real["netmhcpan_rank_pct"] = df_real["peptide_mut"].map(pep_to_rank)
+    df_real = df_real.dropna(subset=["netmhcpan_rank_pct"])
 
     df_pipe = _pipeline_mean_score(SCORES_REAL_CSV)
     df = df_real.merge(df_pipe, on="candidate_id", how="inner")
@@ -291,7 +344,10 @@ def analyse_patient_real() -> None:
     rho_pipe, p_pipe = stats.spearmanr(df["pipeline_score"], df["ic50_nm"])
     rho_net, p_net = stats.spearmanr(df["netmhcpan_rank_pct"], df["ic50_nm"])
 
-    print(f"  N REAL candidates with IC50: {len(df)}")
+    print(
+        f"  Parsed {len(pep_to_rank)} peptides from "
+        f"{NETMHCPAN_REAL_TXT.name} — {len(df)} overlap with REAL IC50 data."
+    )
     print(
         f"  Our pipeline vs IC50     :  Spearman ρ = {rho_pipe:+.3f}  "
         f"(p = {p_pipe:.4f})   "
@@ -303,7 +359,6 @@ def analyse_patient_real() -> None:
         "[expected positive]"
     )
 
-    # Compare magnitudes (absolute values)
     if abs(rho_net) > abs(rho_pipe):
         print(
             "  → NetMHCpan correlates more tightly with IC50 than our pipeline. "
@@ -319,12 +374,12 @@ def analyse_patient_real() -> None:
         )
     else:
         print(
-            "  → Our pipeline correlates at least as tightly with IC50 as NetMHCpan. "
-            "This would"
+            "  → Our pipeline correlates at least as tightly with IC50 as "
+            "NetMHCpan. This would"
         )
         print(
             "    suggest Department C captures most of the NetMHCpan signal "
-            "in this mock setup."
+            "in this setup."
         )
 
 
