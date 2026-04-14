@@ -23,6 +23,10 @@ from __future__ import annotations
 from pathlib import Path
 
 import pandas as pd
+
+# Reuse the trained, feature-engineered pipeline score so the benchmark
+# truly reflects the tuned model (not an unweighted module mean).
+from groupe_11_model import pipeline_model_score  # noqa: E402
 from scipy import stats
 
 ANALYSIS_DIR = Path(__file__).resolve().parent
@@ -141,13 +145,9 @@ def _load_patient_peptides(path: Path) -> pd.DataFrame:
     return df[cols]
 
 
-def _pipeline_mean_score(scores_csv: Path) -> pd.DataFrame:
-    """Aggregate all module scores into a mean score per candidate."""
-    df = pd.read_csv(scores_csv)
-    feat_cols = [c for c in df.columns if c not in ("candidate_id", "label")]
-    df[feat_cols] = df[feat_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0)
-    df["pipeline_score"] = df[feat_cols].mean(axis=1)
-    return df[["candidate_id", "label", "pipeline_score"]]
+def _pipeline_score_for(scores_csv: Path, raw_csv: Path) -> pd.DataFrame:
+    """Return tuned-model predict_proba per candidate (trained on patient_one)."""
+    return pipeline_model_score(scores_csv, raw_csv)
 
 
 def _print_peptides_for_netmhcpan(df_peps: pd.DataFrame) -> None:
@@ -204,7 +204,7 @@ def analyse_patient_zero() -> None:
     df_net = df_peps.dropna(subset=["netmhcpan_rank_pct"])[
         ["candidate_id", "netmhcpan_rank_pct"]
     ]
-    df_pipe = _pipeline_mean_score(SCORES_ZERO_CSV)
+    df_pipe = _pipeline_score_for(SCORES_ZERO_CSV, PATIENT_ZERO_RAW)
 
     df = df_pipe.merge(df_net, on="candidate_id", how="inner")
     if len(df) < 3:
@@ -333,7 +333,7 @@ def analyse_patient_real() -> None:
     df_real["netmhcpan_rank_pct"] = df_real["peptide_mut"].map(pep_to_rank)
     df_real = df_real.dropna(subset=["netmhcpan_rank_pct"])
 
-    df_pipe = _pipeline_mean_score(SCORES_REAL_CSV)
+    df_pipe = _pipeline_score_for(SCORES_REAL_CSV, PATIENT_REAL_RAW)
     df = df_real.merge(df_pipe, on="candidate_id", how="inner")
 
     if len(df) < 5:

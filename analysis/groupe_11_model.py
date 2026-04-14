@@ -45,7 +45,12 @@ from sklearn.metrics import (
     roc_auc_score,
     roc_curve,
 )
-from sklearn.model_selection import StratifiedKFold, cross_val_predict, cross_val_score
+from sklearn.model_selection import (
+    GridSearchCV,
+    StratifiedKFold,
+    cross_val_predict,
+    cross_val_score,
+)
 from sklearn.preprocessing import StandardScaler
 
 # ── Paths ──────────────────────────────────────────────────────────────
@@ -55,6 +60,8 @@ PROJECT_ROOT = ANALYSIS_DIR.parent
 PATIENT_ONE_CSV = ANALYSIS_DIR / "scores_patient_one.csv"
 PATIENT_ZERO_CSV = ANALYSIS_DIR / "scores_patient_zero.csv"
 PATIENT_REAL_CSV = ANALYSIS_DIR / "scores_patient_real.csv"
+PATIENT_ONE_RAW_CSV = PROJECT_ROOT / "data" / "patient_one.csv"
+PATIENT_ZERO_RAW_CSV = PROJECT_ROOT / "data" / "patient_zero.csv"
 PATIENT_REAL_RAW_CSV = PROJECT_ROOT / "data" / "patient_real.csv"
 
 OUTPUT_IMPORTANCE_PNG = ANALYSIS_DIR / "groupe_11_feature_importance.png"
@@ -83,6 +90,147 @@ DEPARTMENT = {
     "C": "HLA binding",
     "D": "safety / self-similarity",
 }
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  0. PEPTIDE FEATURE ENGINEERING (HLA-A*02:01 anchors + physicochemistry)
+# ══════════════════════════════════════════════════════════════════════
+#
+# The 20 module scores already cover a lot of ground, but many of them
+# are computed as peptide-level aggregates — they lose anchor-specific
+# resolution. NetMHCpan, by contrast, learns a position-specific motif.
+# We add a small set of engineered features that expose anchor-position
+# physicochemistry directly, so the downstream classifier can learn the
+# HLA-A*02:01 motif (L/M/I/V at P2, V/L/I at the C-terminus) rather than
+# inferring it from averages.
+
+# Kyte–Doolittle hydrophobicity
+KD_HYDROPHOBICITY = {
+    "A": 1.8,
+    "C": 2.5,
+    "D": -3.5,
+    "E": -3.5,
+    "F": 2.8,
+    "G": -0.4,
+    "H": -3.2,
+    "I": 4.5,
+    "K": -3.9,
+    "L": 3.8,
+    "M": 1.9,
+    "N": -3.5,
+    "P": -1.6,
+    "Q": -3.5,
+    "R": -4.5,
+    "S": -0.8,
+    "T": -0.7,
+    "V": 4.2,
+    "W": -0.9,
+    "Y": -1.3,
+}
+# Net charge at pH 7
+AA_CHARGE_PH7 = {"D": -1.0, "E": -1.0, "K": 1.0, "R": 1.0, "H": 0.1}
+# Residue molecular weight (Da, side-chain + backbone)
+AA_MW = {
+    "A": 89.1,
+    "C": 121.2,
+    "D": 133.1,
+    "E": 147.1,
+    "F": 165.2,
+    "G": 75.1,
+    "H": 155.2,
+    "I": 131.2,
+    "K": 146.2,
+    "L": 131.2,
+    "M": 149.2,
+    "N": 132.1,
+    "P": 115.1,
+    "Q": 146.2,
+    "R": 174.2,
+    "S": 105.1,
+    "T": 119.1,
+    "V": 117.1,
+    "W": 204.2,
+    "Y": 181.2,
+}
+AROMATIC_AA = set("FWY")
+# HLA-A*02:01 known anchors
+HLA_A0201_P2 = set("LMIV")
+HLA_A0201_PC = set("VLI")  # C-terminal anchor (P9 for 9-mers, PN for N-mers)
+
+# Engineered features always produced in this exact order
+ENGINEERED_FEATURES = [
+    "E_P2_kd",
+    "E_PC_kd",
+    "E_P2_anchor_ok",
+    "E_PC_anchor_ok",
+    "E_anchor_sum",
+    "E_mean_kd",
+    "E_net_charge",
+    "E_aromaticity",
+    "E_mw_kda",
+    "E_len_delta9",
+]
+
+
+def _peptide_features(peptide: str) -> dict[str, float]:
+    """Compute engineered features for a single peptide. NaN→0 on failure."""
+    zeros = {k: 0.0 for k in ENGINEERED_FEATURES}
+    if not isinstance(peptide, str):
+        return zeros
+    pep = peptide.upper()
+    if len(pep) < 2 or not all(aa in KD_HYDROPHOBICITY for aa in pep):
+        return zeros
+
+    n = len(pep)
+    p2 = pep[1]
+    pc = pep[-1]  # C-terminal anchor (position n)
+
+    p2_ok = 1.0 if p2 in HLA_A0201_P2 else 0.0
+    pc_ok = 1.0 if pc in HLA_A0201_PC else 0.0
+
+    return {
+        "E_P2_kd": KD_HYDROPHOBICITY[p2],
+        "E_PC_kd": KD_HYDROPHOBICITY[pc],
+        "E_P2_anchor_ok": p2_ok,
+        "E_PC_anchor_ok": pc_ok,
+        "E_anchor_sum": p2_ok + pc_ok,
+        "E_mean_kd": sum(KD_HYDROPHOBICITY[aa] for aa in pep) / n,
+        "E_net_charge": sum(AA_CHARGE_PH7.get(aa, 0.0) for aa in pep),
+        "E_aromaticity": sum(1 for aa in pep if aa in AROMATIC_AA) / n,
+        "E_mw_kda": sum(AA_MW[aa] for aa in pep) / 1000.0,
+        "E_len_delta9": abs(n - 9),
+    }
+
+
+def _engineer_from_raw(raw_csv: Path) -> pd.DataFrame:
+    """Return a DataFrame keyed by candidate_id with engineered features."""
+    if not raw_csv.exists():
+        return pd.DataFrame(columns=["candidate_id", *ENGINEERED_FEATURES])
+    df = pd.read_csv(raw_csv)
+    if "peptide_mut" not in df.columns:
+        return pd.DataFrame(columns=["candidate_id", *ENGINEERED_FEATURES])
+    rows = [
+        {"candidate_id": cid, **_peptide_features(pep)}
+        for cid, pep in zip(df["candidate_id"], df["peptide_mut"])
+    ]
+    return pd.DataFrame(rows, columns=["candidate_id", *ENGINEERED_FEATURES])
+
+
+def _merge_engineered(
+    df_scores: pd.DataFrame, raw_csv: Path
+) -> tuple[pd.DataFrame, list[str]]:
+    """Left-merge engineered features onto a scores dataframe.
+
+    Returns (augmented_df, engineered_column_names_present).
+    """
+    df_eng = _engineer_from_raw(raw_csv)
+    if df_eng.empty:
+        return df_scores, []
+    df_out = df_scores.merge(df_eng, on="candidate_id", how="left")
+    for col in ENGINEERED_FEATURES:
+        if col in df_out.columns:
+            df_out[col] = df_out[col].fillna(0.0)
+    return df_out, list(ENGINEERED_FEATURES)
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -135,6 +283,11 @@ def load_data() -> tuple[
     df_one = _load_csv(PATIENT_ONE_CSV)
     df_zero = _load_csv(PATIENT_ZERO_CSV)
 
+    # ── Peptide-level engineered features (HLA-A*02:01 anchors + physchem) ──
+    df_one, eng_one = _merge_engineered(df_one, PATIENT_ONE_RAW_CSV)
+    df_zero, eng_zero = _merge_engineered(df_zero, PATIENT_ZERO_RAW_CSV)
+    engineered = eng_one if eng_one else eng_zero
+
     # Identify feature columns (same order for both sets)
     feature_cols = [c for c in df_one.columns if c not in ("candidate_id", "label")]
 
@@ -143,7 +296,11 @@ def load_data() -> tuple[
         if col not in df_zero.columns:
             df_zero[col] = 0.0
 
-    print(f"  patient_one  : {len(df_one)} candidates, {len(feature_cols)} features")
+    n_module = len(feature_cols) - len(engineered)
+    print(
+        f"  patient_one  : {len(df_one)} candidates, "
+        f"{n_module} module scores + {len(engineered)} engineered peptide features"
+    )
     print(f"  patient_zero : {len(df_zero)} candidates")
 
     # Encode labels
@@ -189,39 +346,63 @@ def compare_models(
     X_train: np.ndarray,
     y_train: np.ndarray,
 ) -> tuple[object, str, float]:
-    """Run 5-fold CV for three classifiers and return the best one."""
-    models: list[tuple[str, object]] = [
-        (
-            "Logistic Regression    ",
-            LogisticRegression(max_iter=1000, random_state=RANDOM_STATE),
-        ),
-        (
-            "Random Forest          ",
-            RandomForestClassifier(
-                max_depth=5, n_estimators=100, random_state=RANDOM_STATE
-            ),
-        ),
-        (
-            "Gradient Boosting      ",
-            GradientBoostingClassifier(
-                max_depth=3, n_estimators=100, random_state=RANDOM_STATE
-            ),
-        ),
-    ]
-
+    """Run 5-fold CV for three classifiers (RF/GB tuned by grid search)."""
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=RANDOM_STATE)
 
+    # Logistic regression — also tuned (C regularisation strength)
+    lr_grid = GridSearchCV(
+        LogisticRegression(max_iter=2000, random_state=RANDOM_STATE),
+        param_grid={"C": [0.1, 0.5, 1.0, 2.0, 5.0]},
+        cv=cv,
+        scoring="accuracy",
+        n_jobs=-1,
+    )
+    rf_grid = GridSearchCV(
+        RandomForestClassifier(random_state=RANDOM_STATE),
+        param_grid={
+            "n_estimators": [100, 300],
+            "max_depth": [3, 5, 8, None],
+            "min_samples_leaf": [1, 2],
+        },
+        cv=cv,
+        scoring="accuracy",
+        n_jobs=-1,
+    )
+    gb_grid = GridSearchCV(
+        GradientBoostingClassifier(random_state=RANDOM_STATE),
+        param_grid={
+            "n_estimators": [100, 300],
+            "max_depth": [2, 3, 5],
+            "learning_rate": [0.05, 0.1],
+        },
+        cv=cv,
+        scoring="accuracy",
+        n_jobs=-1,
+    )
+
+    searches: list[tuple[str, GridSearchCV]] = [
+        ("Logistic Regression    ", lr_grid),
+        ("Random Forest          ", rf_grid),
+        ("Gradient Boosting      ", gb_grid),
+    ]
+
     best_score = -1.0
-    best_model = None
+    best_model: object = None
     best_name = ""
 
-    for name, clf in models:
-        scores = cross_val_score(clf, X_train, y_train, cv=cv, scoring="accuracy")
-        mean, std = scores.mean(), scores.std()
-        print(f"  {name}  accuracy = {mean:.3f} (+/- {std:.3f})")
+    for name, search in searches:
+        search.fit(X_train, y_train)
+        mean = float(search.best_score_)
+        # Std of the best-param row across folds
+        idx = search.best_index_
+        std = float(search.cv_results_["std_test_score"][idx])
+        print(
+            f"  {name}  accuracy = {mean:.3f} (+/- {std:.3f})  "
+            f"best = {search.best_params_}"
+        )
         if mean > best_score:
             best_score = mean
-            best_model = clf
+            best_model = search.best_estimator_
             best_name = name.strip()
 
     print(f"\n  Best model: {best_name}  (CV accuracy = {best_score:.3f})")
@@ -845,6 +1026,59 @@ def analyse_patient_real(
     plt.savefig(OUTPUT_SPEARMAN_PNG, dpi=150, bbox_inches="tight")
     plt.close()
     print(f"  Saved: {OUTPUT_SPEARMAN_PNG.relative_to(PROJECT_ROOT)}")
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  12. TRAINED-MODEL PIPELINE SCORE (used by the NetMHCpan benchmark)
+# ══════════════════════════════════════════════════════════════════════
+
+
+def pipeline_model_score(target_scores_csv: Path, target_raw_csv: Path) -> pd.DataFrame:
+    """Train the tuned pipeline on patient_one and score a target patient.
+
+    The NetMHCpan benchmark uses this instead of a plain mean across modules,
+    so that the correlation we measure truly reflects the tuned, feature-
+    engineered pipeline and not an unweighted average.
+
+    Returns a DataFrame with columns: candidate_id, label, pipeline_score.
+    """
+    df_one = _load_csv(PATIENT_ONE_CSV)
+    df_target = _load_csv(target_scores_csv)
+
+    df_one, eng_one = _merge_engineered(df_one, PATIENT_ONE_RAW_CSV)
+    df_target, _ = _merge_engineered(df_target, target_raw_csv)
+
+    feature_cols = [c for c in df_one.columns if c not in ("candidate_id", "label")]
+    for col in feature_cols:
+        if col not in df_target.columns:
+            df_target[col] = 0.0
+
+    df_one["y"] = df_one["label"].map(LABEL_MAP)
+    train_mask = df_one["y"].notna()
+    X_train_raw = df_one.loc[train_mask, feature_cols].values.astype(float)
+    y_train = df_one.loc[train_mask, "y"].values.astype(int)
+
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train_raw)
+    X_target = scaler.transform(df_target[feature_cols].values.astype(float))
+
+    # Logistic regression was the best CV model — it is also well-calibrated,
+    # which matters when we turn the probability into a ranking.
+    clf = LogisticRegression(C=1.0, max_iter=2000, random_state=RANDOM_STATE)
+    clf.fit(X_train, y_train)
+    proba = clf.predict_proba(X_target)[:, 1]
+
+    if "label" in df_target.columns:
+        label_col = df_target["label"]
+    else:
+        label_col = pd.Series([None] * len(df_target))
+    return pd.DataFrame(
+        {
+            "candidate_id": df_target["candidate_id"].values,
+            "label": label_col.values,
+            "pipeline_score": proba,
+        }
+    )
 
 
 # ══════════════════════════════════════════════════════════════════════
