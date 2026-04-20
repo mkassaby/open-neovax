@@ -1,26 +1,11 @@
-"""
-Unit tests for module B1 — groupe_06
-Proteasome C-terminal proxy (Department B)
+"""Unit tests for module B1 — groupe_06 (proteasome C-terminal proxy)."""
 
-Test coverage:
-    1. Nominal case          — valid peptide, favoured C-terminus
-    2. Nominal case          — valid peptide, disfavoured C-terminus
-    3. Edge case             — very short peptide (single AA)
-    4. Edge case             — non-standard / unknown amino acid at C-terminus
-    5. Invalid input         — empty peptide string
-    6. Invalid input         — None as peptide_mut
-    7. Invalid input         — peptide_mut is not a string (integer)
-    8. Contract              — return type is always (str, float)
-"""
+from __future__ import annotations
 
 import pytest
 
 from logic.types import Candidate
-from modules.groupe_06 import SCORE_NAME, get_score
-
-# ---------------------------------------------------------------------------
-# Helper
-# ---------------------------------------------------------------------------
+from modules.groupe_06 import NEUTRAL_PENALTY, SCORE_NAME, get_score
 
 
 def _make_candidate(peptide_mut: str = "SLMAFTIAV") -> Candidate:
@@ -32,118 +17,127 @@ def _make_candidate(peptide_mut: str = "SLMAFTIAV") -> Candidate:
     )
 
 
-# ---------------------------------------------------------------------------
+# ----------------
 # 1. Nominal tests
-# ---------------------------------------------------------------------------
+# ----------------
 
 
-def test_nominal_favoured_cterm():
-    """Peptide ending with L (hydrophobic) → positive score."""
-    candidate = _make_candidate("SLMAFTIAL")  # ends with L
-    name, value = get_score(candidate)
-    assert name == SCORE_NAME
-    assert isinstance(value, float)
-    assert value > 0.0, "L at C-terminus should be favoured (score > 0)"
-
-
-def test_nominal_disfavoured_cterm():
-    """Peptide ending with K (charged) → negative score."""
-    candidate = _make_candidate("SLMAFTIAK")  # ends with K
-    name, value = get_score(candidate)
-    assert name == SCORE_NAME
-    assert isinstance(value, float)
-    assert value < 0.0, "K at C-terminus should be disfavoured (score < 0)"
-
-
-def test_nominal_neutral_cterm():
-    """Peptide ending with G (neutral) → score == 0.0."""
-    candidate = _make_candidate("SLMAFTIAG")  # ends with G
-    name, value = get_score(candidate)
-    assert name == SCORE_NAME
-    assert value == 0.0, "G at C-terminus should be neutral (score == 0.0)"
-
-
-# ---------------------------------------------------------------------------
-# 2. Edge-case tests
-# ---------------------------------------------------------------------------
-
-
-def test_single_amino_acid_peptide():
-    """Single valid AA peptide — should not crash and return a float."""
-    candidate = _make_candidate("V")  # V is favoured
-    name, value = get_score(candidate)
+# Test pour un peptide avec un C-terminus favorisé
+# (L hydrophobe), doit retourner un score positif
+def test_nominal_favoured_cterm() -> None:
+    """Peptide ending with L (hydrophobic) should get a positive score."""
+    name, value = get_score(_make_candidate("SLMAFTIAL"))
     assert name == SCORE_NAME
     assert isinstance(value, float)
     assert value > 0.0
 
 
-def test_non_standard_cterm():
-    """Peptide ending with a non-standard character (X) → neutral penalty."""
-    candidate = _make_candidate("SLMAFTIX")  # X is not a standard AA
-    name, value = get_score(candidate)
+# Test pour un peptide avec un C-terminus
+# neutre (G), doit retourner un score de 0
+def test_nominal_neutral_cterm() -> None:
+    """Peptide ending with G should get a neutral score."""
+    name, value = get_score(_make_candidate("SLMAFTIAG"))
     assert name == SCORE_NAME
     assert isinstance(value, float)
+    assert value == 0.0
 
 
-def test_lowercase_peptide():
-    """Module should handle lowercase residues gracefully (case-insensitive)."""
-    candidate = _make_candidate("slmaftial")  # lowercase, ends with l
-    name, value = get_score(candidate)
+# Test pour un peptide avec un C-terminus
+# défavorisé (K chargé), doit retourner un score négatif
+def test_nominal_disfavoured_cterm() -> None:
+    """Peptide ending with K (charged) should get a negative score."""
+    name, value = get_score(_make_candidate("SLMAFTIAK"))
     assert name == SCORE_NAME
     assert isinstance(value, float)
-    assert value > 0.0, "Lowercase 'l' should be treated as L (favoured)"
+    assert value < 0.0
 
 
-# ---------------------------------------------------------------------------
-# 3. Invalid-input tests
-# ---------------------------------------------------------------------------
+# -----------------------
+# 2. Tests de cas limites
+# -----------------------
 
 
-def test_empty_peptide():
-    """Empty string as peptide_mut → returns a float, does not crash."""
-    candidate = _make_candidate("")
-    name, value = get_score(candidate)
+# Test pour un peptide d'une seule acide aminé, devrait être traité sans erreur
+def test_single_amino_acid_peptide() -> None:
+    """A one-residue peptide should still be handled safely."""
+    name, value = get_score(_make_candidate("V"))
     assert name == SCORE_NAME
     assert isinstance(value, float)
+    assert value > 0.0
 
 
-def test_none_peptide(monkeypatch):
-    """None as peptide_mut → returns a float, does not crash."""
+# Test pour un peptide avec des lettres
+# minuscules et des espaces, devrait être normalisé correctement
+def test_lowercase_and_spaces_are_handled() -> None:
+    """Lowercase input with surrounding spaces should be normalized."""
+    name, value = get_score(_make_candidate("  slmaftiav  "))
+    assert name == SCORE_NAME
+    assert isinstance(value, float)
+    assert value == 1.0
+
+
+# Test pour un peptide avec un acide aminé
+# non standard (X ou Z), devrait retourner une pénalité
+def test_non_standard_cterm_returns_penalty() -> None:
+    """Unknown residues such as X or Z should return the documented penalty."""
+    for peptide in ("SLMAFTIAX", "SLMAFTIAZ", "SLMAFTIA*"):
+        name, value = get_score(_make_candidate(peptide))
+        assert name == SCORE_NAME
+        assert isinstance(value, float)
+        assert value == NEUTRAL_PENALTY
+
+
+# -------------------------
+# 3. Tests de cas invalides
+# -------------------------
+
+
+# Test pour un peptide vide, doit retourner une pénalité
+def test_empty_peptide_returns_penalty() -> None:
+    name, value = get_score(_make_candidate(""))
+    assert name == SCORE_NAME
+    assert isinstance(value, float)
+    assert value == NEUTRAL_PENALTY
+
+
+# Test pour un peptide avec valeur None, doit retourner une pénalité
+def test_none_peptide_returns_penalty(monkeypatch: pytest.MonkeyPatch) -> None:
     candidate = _make_candidate("PLACEHOLDER")
     monkeypatch.setattr(candidate, "peptide_mut", None)
     name, value = get_score(candidate)
     assert name == SCORE_NAME
     assert isinstance(value, float)
+    assert value == NEUTRAL_PENALTY
 
 
-def test_integer_peptide(monkeypatch):
-    """Non-string peptide_mut (int) → returns a float, does not crash."""
+# Test pour un peptide avec une valeur entière, doit retourner une pénalité
+def test_integer_peptide_returns_penalty(monkeypatch: pytest.MonkeyPatch) -> None:
     candidate = _make_candidate("PLACEHOLDER")
     monkeypatch.setattr(candidate, "peptide_mut", 12345)
     name, value = get_score(candidate)
     assert name == SCORE_NAME
     assert isinstance(value, float)
+    assert value == NEUTRAL_PENALTY
 
 
-# ---------------------------------------------------------------------------
-# 4. Contract tests (return-type guarantees)
-# ---------------------------------------------------------------------------
+# -------------------
+# 4. Tests de contrat
+# -------------------
 
 
+# Vérification que la fonction retourne toujours un tuple (str, float)
 @pytest.mark.parametrize(
     "peptide",
     [
-        "SLMAFTIAV",  # standard 9-mer, ends V (favoured)
-        "AAAAAAAAAA",  # 10-mer, ends A (moderate)
-        "GILGFVFTL",  # known HLA-A*02:01 ligand, ends L
-        "FMYSDFHFI",  # ends I (favoured)
-        "EIYKRWII",  # ends I (favoured)
+        "SLMAFTIAV",
+        "AAAAAAAAAA",
+        "GILGFVFTL",
+        "FMYSDFHFI",
+        "EIYKRWII",
     ],
 )
-def test_return_type_contract(peptide):
-    """get_score must always return (str, float) for any valid peptide."""
-    candidate = _make_candidate(peptide)
-    name, value = get_score(candidate)
+def test_return_type_contract(peptide: str) -> None:
+    name, value = get_score(_make_candidate(peptide))
     assert isinstance(name, str)
     assert isinstance(value, float)
     assert name == SCORE_NAME

@@ -74,3 +74,15 @@ def test_different_lengths():
     # WT and MUT have different lengths
     _, score = get_score(_make_candidate("SLYNTVATL", "SLYNTI", 6))
     assert score == INVALID_PENALTY
+
+
+def test_multiple_differences_invalid():
+    # Two residue changes should be invalid for single-substitution logic
+    _, score = get_score(_make_candidate("SLYNTVATL", "SLYNTIATA", 6))
+    assert score == INVALID_PENALTY
+
+
+def test_declared_position_must_match_actual_difference():
+    # Actual difference is at position 6 but declared position is 5
+    _, score = get_score(_make_candidate("SLYNTVATL", "SLYNTIATL", 5))
+    assert score == INVALID_PENALTY

@@ -54,3 +54,31 @@ def test_glycine_at_p5_scores_lower():
     # P4-P7 = A G T I -> 0.1, 0.0, 0.2, 0.3
     _, score = get_score(_make_candidate("AAAAAAAAA", "SLMAGTIAV", 5))
     assert score == pytest.approx(0.15)
+
+
+def test_exposed_mutation_gain_increases_score_vs_non_exposed_change():
+    # Same MUT peptide in both candidates; only WT differs.
+    # Exposed change at P5 (G->F) should increase A8 vs a non-exposed P2 change.
+    _, exposed_gain = get_score(_make_candidate("SLMAGTIAV", "SLMAFTIAV", 5))
+    _, non_exposed_change = get_score(_make_candidate("SSMAFTIAV", "SLMAFTIAV", 2))
+    assert exposed_gain > non_exposed_change
+
+
+def test_exposed_mutation_loss_decreases_score_vs_non_exposed_change():
+    # Same MUT peptide in both candidates; only WT differs.
+    # Exposed change at P5 (F->G) should decrease A8 vs a non-exposed P2 change.
+    _, exposed_loss = get_score(_make_candidate("SLMAFTIAV", "SLMAGTIAV", 5))
+    _, non_exposed_change = get_score(_make_candidate("SSMAGTIAV", "SLMAGTIAV", 2))
+    assert exposed_loss < non_exposed_change
+
+
+def test_none_wt_returns_base_score_without_crash():
+    candidate = Candidate(
+        candidate_id="TEST_02",
+        peptide_wt=None,  # type: ignore[arg-type]
+        peptide_mut="SLMAFTIAV",
+        mut_pos_1based=5,
+    )
+
+    _, score = get_score(candidate)
+    assert score == pytest.approx(0.375)

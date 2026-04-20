@@ -78,13 +78,18 @@ def _validate_mutation_in_window(
     if mut_pos_1based < 1 or mut_pos_1based > len(peptide_mut):
         return False
 
-    # If WT and MUT are identical, there is no mutation.
-    if peptide_wt == peptide_mut:
+    # For single-substitution candidates, WT and MUT must differ at exactly
+    # one position.
+    diff_positions = [
+        i
+        for i, (aa_wt, aa_mut) in enumerate(zip(peptide_wt, peptide_mut))
+        if aa_wt != aa_mut
+    ]
+    if len(diff_positions) != 1:
         return False
 
-    # Declared mutation position must contain a residue change.
-    index = mut_pos_1based - 1
-    return peptide_wt[index] != peptide_mut[index]
+    # Declared mutation position must match the actual unique difference.
+    return diff_positions[0] == (mut_pos_1based - 1)
 
 
 def _position_relevance(mut_pos_1based: int, pep_len: int) -> float:

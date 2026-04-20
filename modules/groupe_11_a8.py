@@ -61,6 +61,7 @@ TCR_SALIENCY = {
 }
 
 TCR_POSITIONS = [3, 4, 5, 6]
+IMPACT_WEIGHT = 0.2
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -80,6 +81,38 @@ def _tcr_contact_score(peptide: str) -> float:
     peptide = peptide.upper()
     total = sum(TCR_SALIENCY.get(peptide[i], 0.0) for i in TCR_POSITIONS)
     return total / len(TCR_POSITIONS)
+
+
+def _single_substitution_index(peptide_wt: str, peptide_mut: str) -> int | None:
+    """Return index of the unique substitution, else None."""
+    if not peptide_wt or not peptide_mut:
+        return None
+    if len(peptide_wt) != len(peptide_mut):
+        return None
+
+    diff_positions = [
+        i
+        for i, (aa_wt, aa_mut) in enumerate(
+            zip(peptide_wt.upper(), peptide_mut.upper())
+        )
+        if aa_wt != aa_mut
+    ]
+    if len(diff_positions) != 1:
+        return None
+    return diff_positions[0]
+
+
+def _mutation_impact_delta(peptide_wt: str, peptide_mut: str) -> float:
+    """Return saliency change for a single exposed substitution, else 0."""
+    mut_index = _single_substitution_index(peptide_wt, peptide_mut)
+    if mut_index is None or mut_index not in TCR_POSITIONS:
+        return 0.0
+
+    peptide_wt = peptide_wt.upper()
+    peptide_mut = peptide_mut.upper()
+    wt_saliency = TCR_SALIENCY.get(peptide_wt[mut_index], 0.0)
+    mut_saliency = TCR_SALIENCY.get(peptide_mut[mut_index], 0.0)
+    return mut_saliency - wt_saliency
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -111,10 +144,18 @@ def get_score(candidate: "Candidate") -> tuple[str, float]:
         (score_name, score_value)
     """
     # 1. Get the sequence to analyze
-    peptide = candidate.peptide_mut
+    peptide_mut = candidate.peptide_mut
+    peptide_wt = candidate.peptide_wt
 
     # 2. Compute the score using your logic
-    score_value = _tcr_contact_score(peptide)
+    base_score = _tcr_contact_score(peptide_mut)
+
+    if not isinstance(peptide_wt, str) or not isinstance(peptide_mut, str):
+        return (SCORE_NAME, base_score)
+
+    impact_delta = _mutation_impact_delta(peptide_wt, peptide_mut)
+    score_value = base_score + IMPACT_WEIGHT * impact_delta
+    score_value = max(0.0, min(1.0, score_value))
 
     # 3. Return the result in the expected format
     return (SCORE_NAME, score_value)

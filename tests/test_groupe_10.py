@@ -58,3 +58,21 @@ def test_multiple_distinct_scores_exist():
         get_score(make_candidate("GLMAFTIAV"))[1],
     }
     assert len(scores) >= 5
+
+
+def test_non_standard_first_aa():
+    name, value = get_score(make_candidate("XLMAFTIAV"))
+    assert name == "B_erap_nterm_proxy"
+    assert value == -1.0
+
+
+def test_too_short_peptide():
+    name, value = get_score(make_candidate("PLM"))
+    assert name == "B_erap_nterm_proxy"
+    assert value == -1.0
+
+
+def test_too_long_peptide():
+    name, value = get_score(make_candidate("PLMAFTIAVAAAA"))
+    assert name == "B_erap_nterm_proxy"
+    assert value == -1.0

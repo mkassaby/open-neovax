@@ -1,7 +1,10 @@
 """
 GROUPE 05 — Open-NeoVax
 =============================
-
+Hypothesis: A mutant peptide is a better neoepitope candidate if the mutation
+induces a significant physicochemical change relative to the wild-type peptide.
+Non-conservative mutations that alter hydrophobicity, charge, or steric bulk
+are more likely to be recognized as non-self by CD8+ T lymphocytes.
 """
 
 from __future__ import annotations
@@ -103,7 +106,11 @@ def _get_charge(aa: str) -> float:
 
 
 def _get_volume(aa: str) -> float:
-    return VOLUME.get(aa.upper(), 100.0)  # in Angstrom^3
+    """Get side-chain volume (Zamyatnin, 1972) for an amino acid.
+
+    Returns 100.0 (average volume) for unknown amino acids.
+    """
+    return VOLUME.get(aa.upper(), 100.0)
 
 
 def _delta_at_position(wt_aa: str, mut_aa: str) -> float:
@@ -134,6 +141,9 @@ def get_score(candidate: "Candidate") -> tuple[str, float]:
     """
     Compute multi-property Euclidean distance between WT and mutant peptides.
 
+    Hypothesis: Mutations inducing significant physicochemical changes between
+    the wild-type and mutant peptide are favored as neoepitope candidates.
+
     Parameters
     ----------
     candidate : Candidate
@@ -144,10 +154,18 @@ def get_score(candidate: "Candidate") -> tuple[str, float]:
     -------
     tuple[str, float]
         ("A_delta_wt_vs_mut", score) where:
-        - 0.0 : sequences identiques
-        - >0.0 : different sequences, la valeur est la distance cumulative de
-        toutes les positions
-        Plus le score est haut, plus la mutation est radicale
+        - score = 0.0  : identical sequences (no mutation)
+        - score > 0.0  : cumulative Euclidean distance across all positions
+                         (higher = more radical mutation)
+        - score = -1.0 : invalid input (empty, different lengths, exception)
+
+    Limitations
+    -----------
+    - Does not consider mutation position (anchor vs non-anchor)
+    - Cumulative score favors multiple minor mutations over one radical change
+    - Some conservative mutations can still be immunogenic
+    - This score only measures physicochemical change.
+    It doesn't tell if the immune system will actually respond.
     """
     try:
         wt = candidate.peptide_wt.strip().upper()
